@@ -3,8 +3,25 @@ import { render } from '@testing-library/react-native';
 import { StarRating } from '../StarRating';
 
 describe('StarRating', () => {
-  test('the component rendered', () => {
-    const { debug } = render(<StarRating rating={{ average: 7 }} />);
-    debug();
+  describe('rating was passed', () => {
+    it('shows the rating', () => {
+      const { getByText } = render(<StarRating rating={{ average: 7 }} />);
+
+      expect(getByText('7')).toBeDefined();
+    });
+
+    it('shows the star icon', () => {
+      const { getByTestId } = render(<StarRating rating={{ average: 7 }} />);
+
+      expect(getByTestId('starIcon')).toBeDefined();
+    });
+  });
+
+  describe('rating was not passed', () => {
+    it('returns nothing', () => {
+      const { container } = render(<StarRating />);
+
+      expect(container.children.length).toEqual(0);
+    });
   });
 });
