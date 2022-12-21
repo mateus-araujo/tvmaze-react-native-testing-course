@@ -10,7 +10,7 @@ export interface Episode {
   airstamp: string;
   runtime: number;
   rating: {
-    average: number;
+    average: number | null;
   };
   image: {
     medium: string;
@@ -26,5 +26,5 @@ export interface Episode {
 
 export interface GroupedEpisodes {
   seasonNames: string[];
-  seasons: {[key: string]: Episode[]};
+  seasons: { [key: string]: Episode[] };
 }
