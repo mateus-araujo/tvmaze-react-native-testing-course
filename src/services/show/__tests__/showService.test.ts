@@ -1,19 +1,8 @@
-import { api } from '../../api';
 import { showService } from '../showService';
-import {
-  episode1,
-  episode2,
-  episode22,
-  episode23,
-  episodesList,
-} from './mocks';
+import { showMocks } from 'test/mocks/show';
 
 describe('showService', () => {
   describe('getEpisodes', () => {
-    beforeAll(() => {
-      jest.spyOn(api, 'get').mockResolvedValue({ data: episodesList });
-    });
-
     test('should return an episode list with all season names', async () => {
       const groupedEpisodes = await showService.getEpisodes('1');
 
@@ -27,11 +16,11 @@ describe('showService', () => {
       const season1 = groupedEpisodes.seasons[1];
       const season2 = groupedEpisodes.seasons[2];
 
-      expect(season1.includes(episode1)).toBeTruthy();
-      expect(season1.includes(episode2)).toBeTruthy();
+      expect(season1[0]).toEqual(showMocks.episode1);
+      expect(season1[1]).toEqual(showMocks.episode2);
 
-      expect(season2.includes(episode22)).toBeTruthy();
-      expect(season2.includes(episode23)).toBeTruthy();
+      expect(season2[0]).toEqual(showMocks.episode22);
+      expect(season2[1]).toEqual(showMocks.episode23);
     });
   });
 });
