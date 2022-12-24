@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { act, fireEvent, render } from '@testing-library/react-native';
+import { act, fireEvent, render } from 'test-utils';
 import { SeasonModal } from '../SeasonModal';
 import { Modalize } from 'react-native-modalize';
 
